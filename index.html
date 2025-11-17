@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acompanhamento de Pleito - FUNDARPE</title>
+  <link rel="stylesheet" href="css/Comissao.css">
+</head>
+<body>
+  <h2>Portal do Proponente Cultural</h2>
+
+  <h3>Acompanhamento de Pleito</h3>
+
+  <label>Número do Protocolo:</label>
+  <input id="protocoloInput" type="text" placeholder="Ex: CULT-2025-12345">
+  <button onclick="consultar()">Consultar Status</button>
+
+  <div>
+    <p><strong>Protocolo:</strong> <span id="protocolo"></span></p>
+    <p><strong>Status:</strong> <span id="status"></span></p>
+  </div>
+
+  <hr>
+
+  <h3>Painel da Comissão - FUNDARPE</h3>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Projeto</th>
+        <th>Responsável</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CULT-2025-12345</td>
+        <td>Cultura Viva</td>
+        <td>Ana Souza</td>
+        <td>Em análise técnica</td>
+      </tr>
+      <tr>
+        <td>CULT-2025-98765</td>
+        <td>Artes em Movimento</td>
+        <td>Carlos Lima</td>
+        <td>Aprovado – aguardando formalização</td>
+      </tr>
+      <tr>
+        <td>CULT-2025-54321</td>
+        <td>Cultura Popular PE</td>
+        <td>Maria Santos</td>
+        <td>Pendente de complementação</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <label>Pleito:</label>
+    <select id="pleitoSelect">
+      <option>Selecione...</option>
+      <option>CULT-2025-12345</option>
+      <option>CULT-2025-98765</option>
+      <option>CULT-2025-54321</option>
+    </select>
+  </p>
+
+  <p>
+    <label>Novo Status:</label>
+    <select id="novoStatus">
+      <option>Em análise técnica</option>
+      <option>Aprovado – aguardando formalização</option>
+      <option>Pendente de complementação</option>
+    </select>
+  </p>
+
+  <button onclick="atualizar()">Atualizar</button>
+
+  <div>
+    <p><strong>Histórico:</strong></p>
+    <p id="historico">(sem dados)</p>
+  </div>
+
+<script>
+  function consultar() {
+    var protocolo = document.getElementById("protocoloInput").value;
+    document.getElementById("protocolo").textContent = protocolo;
+    document.getElementById("status").textContent = "Status não encontrado (exemplo)";
+  }
+
+  function atualizar() {
+    var pleito = document.getElementById("pleitoSelect").value;
+    var status = document.getElementById("novoStatus").value;
+
+    if (pleito === "Selecione...") {
+      alert("Escolha um pleito para atualizar!");
+      return;
+    }
+
+    var texto = pleito + " → " + status;
+
+    var historico = document.getElementById("historico");
+
+    if (historico.textContent === "(sem dados)") {
+      historico.textContent = texto;
+    } else {
+      historico.textContent += "\n" + texto;
+    }
+  }
+</script>
+
+</body>
+</html>
+
